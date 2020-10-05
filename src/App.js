@@ -3,8 +3,7 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import Home from './screens/home'
 import Login from './screens/login'
@@ -15,7 +14,7 @@ function App() {
       <div className="App">
       </div>
       <Switch>
-          <Route path="/users">
+          <Route path="/users/login">
             <Login />
           </Route>
           <Route path="/">
