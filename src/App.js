@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Home from './screens/home'
 import Login from './screens/login'
+import UserDashboard from './screens/user-dashboard';
 
 function App() {
   return (
@@ -17,8 +18,11 @@ function App() {
           <Route path="/users/login">
             <Login />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/user-dashboard">
+            <UserDashboard />
           </Route>
         </Switch>
     </Router>
