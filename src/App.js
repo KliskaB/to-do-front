@@ -8,6 +8,7 @@ import Home from './screens/home';
 import Login from './screens/login';
 import UserDashboard from './screens/user-dashboard';
 import { history } from './history';
+import Register from './screens/register';
 
 function App() {
 
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/user-dashboard">
             <UserDashboard />
+          </Route>
+          <Route path="/users/register">
+            <Register />
           </Route>
         </Switch>
     </HashRouter>

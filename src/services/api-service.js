@@ -19,7 +19,6 @@ export class ApiService {
     }
 
     handleSuccessResponse(response) {
-      history.push('/user-dashboard');
       return response;
     }
 

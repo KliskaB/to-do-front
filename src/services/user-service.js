@@ -2,7 +2,8 @@ import { HttpService } from './http-service';
 
 const ENDPOINTS = {
   USER_LOGIN: `/users/login/`,
-  USER_ME: `/users/me/`
+  USER_ME: `/users/me/`,
+  USERS: `/users/`
 };
 class UserService extends HttpService {
   login = (data) => this.client.post(ENDPOINTS.USER_LOGIN, data)
@@ -17,6 +18,12 @@ class UserService extends HttpService {
   
   getMe = (data) => this.client.get(ENDPOINTS.USER_ME)
                     .then(({ data }) => data);
+
+  register = (data) => this.client.post(ENDPOINTS.USERS, data)
+                       .then(({ data }) => {
+                          console.log(data);
+                          return data;
+                       });
                     
 }
 
