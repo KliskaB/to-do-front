@@ -1,8 +1,5 @@
 import axios from 'axios';
-//import { Redirect } from "react-router-dom"; 
-import { createHashHistory } from "history";
-
-const history = createHashHistory();
+import { history } from '../history'
 
 export class ApiService {
     constructor(options = {}) {
@@ -22,7 +19,8 @@ export class ApiService {
     }
 
     handleSuccessResponse(response) {
-        return response;
+      history.push('/user-dashboard');
+      return response;
     }
 
     handleErrorResponse = async error => {
@@ -33,7 +31,7 @@ export class ApiService {
           case 403: {
             // redirektuj ga na login
             // <Redirect to='/login' />
-            history.go("/login");
+            history.push('/login');
             break;
           }
           default:

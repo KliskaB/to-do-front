@@ -1,17 +1,18 @@
 import React from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router,
   Switch,
-  Route
+  Route, HashRouter
 } from "react-router-dom";
-import Home from './screens/home'
-import Login from './screens/login'
+import Home from './screens/home';
+import Login from './screens/login';
 import UserDashboard from './screens/user-dashboard';
+import { history } from './history';
 
 function App() {
+
   return (
-    <Router>
+    <HashRouter history={history}>
       <div className="App">
       </div>
       <Switch>
@@ -25,7 +26,7 @@ function App() {
             <UserDashboard />
           </Route>
         </Switch>
-    </Router>
+    </HashRouter>
   );
 }
 
