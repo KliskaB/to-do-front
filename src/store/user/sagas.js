@@ -1,13 +1,13 @@
 import { all, call, takeLatest, put } from 'redux-saga/effects';
 import {userService} from '../../services/user-service'
 import { LOGIN_ACTION, REGISTER_ACTION, setUser } from './actions';
-import { history } from '../../history'
+import { history } from '../../history';
+import { ROUTES } from '../../constants';
 
 export function* registerUser({ payload }) {
     try {
-        const data = yield call(userService.register, payload);
-        console.log('Register saga', data);
-        history.push('/users/login');
+        yield call(userService.register, payload);
+        history.push(ROUTES.LOGIN);
     } catch(e) {
         console.log(e);
     }
@@ -16,9 +16,9 @@ export function* registerUser({ payload }) {
 export function* loginUser({ payload }) {
     try {
         yield call(userService.login, payload);
-        const user = yield call(userService.getMe);
-        yield put(setUser(user));
-        history.push('/user-dashboard');
+        const { data } = yield call(userService.getMe);
+        yield put(setUser(data));
+        history.push(ROUTES.DASHBOARD);
     } catch (e) {
         console.log(e);
     }

@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'formik';
 
-const SharedInput = ({ labelName, inputKey, errors = {}, touched = {}, value }) => {
+const SharedInput = ({ labelName, inputKey, errors = {}, touched = {}, ...props }) => {
     return (
         <div id='shared-input-div'>
             <div>
                 <label>{labelName}</label>
             </div>
             <div>
-                <Field name={inputKey} />
+                <Field name={inputKey} {...props} />
                     {errors[inputKey] && touched[inputKey]  ?  (
                     <div>{errors[inputKey]}</div>
                     ) : null}

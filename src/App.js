@@ -9,6 +9,7 @@ import Login from './screens/login';
 import UserDashboard from './screens/user-dashboard';
 import { history } from './history';
 import Register from './screens/register';
+import { ROUTES } from './constants';
 
 function App() {
 
@@ -17,16 +18,16 @@ function App() {
       <div className="App">
       </div>
       <Switch>
-          <Route path="/users/login">
+          <Route path={ROUTES.LOGIN}>
             <Login />
           </Route>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/user-dashboard">
+          <Route path={ROUTES.DASHBOARD}>
             <UserDashboard />
           </Route>
-          <Route path="/users/register">
+          <Route path={ROUTES.REGISTER}>
             <Register />
           </Route>
         </Switch>

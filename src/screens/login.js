@@ -23,10 +23,10 @@ const Login = () => {
                 }));
             }}
             >
-            {({ errors, touched, values }) => (
+            {({ props }) => (
                 <Form>
-                    <SharedInput labelName="Username" inputKey="username" errors={errors} touched={touched} />
-                    <SharedInput labelName="Password" inputKey="password" errors={errors} touched={touched} />
+                    <SharedInput labelName="Username" inputKey="username" {...props} />
+                    <SharedInput labelName="Password" inputKey="password" type="password" {...props} />
                     <button type="submit">Log in</button>  
                 </Form>
             )}

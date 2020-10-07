@@ -1,8 +1,8 @@
-import apiService from './api-service';
+import apiService from "./api-service";
 
 export class HttpService {
-    constructor() {
-        this.apiService = apiService;
-        this.client = this.apiService.client;
-    }
+  constructor() {
+    this.apiService = apiService;
+    this.client = this.apiService.client;
+  }
 }

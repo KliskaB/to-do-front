@@ -28,13 +28,13 @@ const Register = () => {
                 }));
             }}
             >
-            {({ errors, touched }) => (
+            {({ props }) => (
                 <Form>
-                    <SharedInput labelName="First name" inputKey="first_name" errors={errors} touched={touched} />
-                    <SharedInput labelName="Last name" inputKey="last_name" errors={errors} touched={touched} />
-                    <SharedInput labelName="Email" inputKey="email" errors={errors} touched={touched} />
-                    <SharedInput labelName="Username" inputKey="username" errors={errors} touched={touched} />
-                    <SharedInput labelName="Password" inputKey="password" errors={errors} touched={touched} />
+                    <SharedInput labelName="First name" inputKey="first_name" {...props} />
+                    <SharedInput labelName="Last name" inputKey="last_name" {...props} />
+                    <SharedInput labelName="Email" inputKey="email" {...props} />
+                    <SharedInput labelName="Username" inputKey="username" {...props} />
+                    <SharedInput labelName="Password" inputKey="password" type="password" {...props} />
                     <button type="submit">Register</button>  
                 </Form>
             )}
