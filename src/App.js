@@ -1,28 +1,37 @@
 import React from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route, HashRouter
 } from "react-router-dom";
-import Home from './screens/home'
-import Login from './screens/login'
+import Home from './screens/home';
+import Login from './screens/login';
+import UserDashboard from './screens/user-dashboard';
+import { history } from './history';
+import Register from './screens/register';
+import { ROUTES } from './constants';
 
 function App() {
+
   return (
-    <Router>
+    <HashRouter history={history}>
       <div className="App">
       </div>
       <Switch>
-          <Route path="/users">
+          <Route path={ROUTES.LOGIN}>
             <Login />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
+          <Route path={ROUTES.DASHBOARD}>
+            <UserDashboard />
+          </Route>
+          <Route path={ROUTES.REGISTER}>
+            <Register />
+          </Route>
         </Switch>
-    </Router>
+    </HashRouter>
   );
 }
 
