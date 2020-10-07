@@ -23,6 +23,20 @@ class UserService extends HttpService {
 
   getMe = () => this.client.get(ENDPOINTS.USER_ME);
 
+  getMeDef = (payload) => {
+    try {
+      if(!payload.accessToken) {
+        return null;
+      }
+      this.apiService.addHeader({
+        Authorization: `Bearer ${payload.accessToken}`,
+      });
+      return this.getMe();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   register = (payload) => this.client.post(ENDPOINTS.USERS, payload);
 }
 

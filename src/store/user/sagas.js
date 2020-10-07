@@ -1,6 +1,6 @@
 import { all, call, takeLatest, put } from 'redux-saga/effects';
 import {userService} from '../../services/user-service'
-import { LOGIN_ACTION, REGISTER_ACTION, setUser } from './actions';
+import { GET_USER, LOGIN_ACTION, REGISTER_ACTION, setUser } from './actions';
 import { history } from '../../history';
 import { ROUTES } from '../../constants';
 
@@ -24,9 +24,24 @@ export function* loginUser({ payload }) {
     }
 }
 
+export function* getUser({ payload }) {
+    try {
+        const retVal = yield call(userService.getMeDef, payload);
+        if(!retVal) {
+            history.push(ROUTES.LOGIN);
+            return
+        }
+        yield put(setUser(retVal.data));
+        history.push(ROUTES.DASHBOARD);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 export default function* userSagas() {
     yield all([
         takeLatest(LOGIN_ACTION, loginUser),
+        takeLatest(GET_USER, getUser),
         takeLatest(REGISTER_ACTION, registerUser)
     ]);
 }
