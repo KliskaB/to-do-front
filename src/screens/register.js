@@ -3,6 +3,8 @@ import { Formik, Form } from 'formik';
 import SharedInput from '../components/shared-input';
 import { useDispatch } from 'react-redux';
 import { register } from '../store/user/actions';
+import { Link } from "react-router-dom";
+import { ROUTES } from '../constants';
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -36,6 +38,9 @@ const Register = () => {
                     <SharedInput labelName="Username" inputKey="username" {...props} />
                     <SharedInput labelName="Password" inputKey="password" type="password" {...props} />
                     <button type="submit">Register</button>  
+                    <div>
+                        <Link to={ROUTES.LOGIN}>Already have an account? Log in.</Link>
+                    </div>
                 </Form>
             )}
             </Formik>

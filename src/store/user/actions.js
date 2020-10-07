@@ -1,6 +1,7 @@
 export const LOGIN_ACTION = "LOGIN_ACTION";
 export const SET_USER = "SET_USER";
 export const REGISTER_ACTION = "REGISTER_ACTION";
+export const GET_USER = "GET_USER";
 
 export const register = (payload) => ({
     type: REGISTER_ACTION,
@@ -14,5 +15,10 @@ export const login = (payload) => ({
 
 export const setUser = (payload) => ({
     type: SET_USER,
+    payload
+})
+
+export const getUser = (payload) => ({
+    type: GET_USER,
     payload
 })
