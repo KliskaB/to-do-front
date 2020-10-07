@@ -3,6 +3,7 @@ import {userService} from '../../services/user-service'
 import { GET_USER, LOGIN_ACTION, REGISTER_ACTION, setUser } from './actions';
 import { history } from '../../history';
 import { ROUTES } from '../../constants';
+import apiService from '../../services/api-service';
 
 export function* registerUser({ payload }) {
     try {
@@ -26,7 +27,7 @@ export function* loginUser({ payload }) {
 
 export function* authorizeUser({ payload }) {
     try {
-        this.apiService.addHeader({
+        apiService.addHeader({
             Authorization: `Bearer ${payload.accessToken}`,
           });
         const retVal = yield call(userService.getMe);
