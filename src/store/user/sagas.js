@@ -24,24 +24,24 @@ export function* loginUser({ payload }) {
     }
 }
 
-export function* getUser({ payload }) {
+export function* authorizeUser({ payload }) {
     try {
-        const retVal = yield call(userService.getMeDef, payload);
-        if(!retVal) {
-            history.push(ROUTES.LOGIN);
-            return
-        }
+        this.apiService.addHeader({
+            Authorization: `Bearer ${payload.accessToken}`,
+          });
+        const retVal = yield call(userService.getMe);
         yield put(setUser(retVal.data));
         history.push(ROUTES.DASHBOARD);
     } catch (e) {
         console.log(e);
+        history.push(ROUTES.LOGIN);
     }
 }
 
 export default function* userSagas() {
     yield all([
         takeLatest(LOGIN_ACTION, loginUser),
-        takeLatest(GET_USER, getUser),
+        takeLatest(GET_USER, authorizeUser),
         takeLatest(REGISTER_ACTION, registerUser)
     ]);
 }
