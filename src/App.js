@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { Switch, Route, HashRouter } from "react-router-dom";
-import Home from "./screens/home";
 import Login from "./screens/login";
 import UserDashboard from "./screens/user-dashboard";
 import { history } from "./history";
@@ -27,9 +26,6 @@ function App() {
       <Switch>
         <Route path={ROUTES.LOGIN}>
           <Login />
-        </Route>
-        <Route exact path="/">
-          <Home />
         </Route>
         <Route path={ROUTES.DASHBOARD}>
           <UserDashboard />
