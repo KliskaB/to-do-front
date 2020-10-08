@@ -4,7 +4,6 @@ const ToDoItem = ({ toDoItem }) => {
   return (
     <div>
       <p>
-        {" "}
         {toDoItem.title}
         <button>Details</button>
       </p>

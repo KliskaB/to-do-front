@@ -1,7 +1,7 @@
 import { SET_TO_DO_LIST } from "./actions";
 
 const INTIAL_STATE = {
-  todo_list: [],
+  todos: [],
 };
 
 export const toDoReducer = (state = INTIAL_STATE, action) => {
@@ -9,7 +9,7 @@ export const toDoReducer = (state = INTIAL_STATE, action) => {
     case SET_TO_DO_LIST:
       return {
         ...state,
-        todo_list: action.payload,
+        todos: action.payload,
       };
     default:
       return state;

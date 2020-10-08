@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { history } from "../history";
 import { ROUTES } from "../constants";
 import { useDispatch } from "react-redux";
-import { to_do_list } from "../store/to-do/actions";
+import { toDoList } from "../store/to-do/actions";
 import ToDoList from "../components/to-do-list";
 
 const UserDashboard = () => {
@@ -19,7 +19,7 @@ const UserDashboard = () => {
   };
 
   useEffect(() => {
-    dispatch(to_do_list());
+    dispatch(toDoList());
     // eslint-disable-next-line
   }, []);
 
