@@ -1,6 +1,8 @@
-import { all, call, takeLatest, put } from "redux-saga/effects";
-import { TODO_LIST, setToDos } from "./actions";
+import { all, call, takeLatest, put, take } from "redux-saga/effects";
+import { TODO_LIST, setToDos, DELETE_TODO_ITEM } from "./actions";
 import { toDoService } from "../../services/to-do-service";
+import { history } from "../../history";
+import { ROUTES } from "../../constants";
 
 export function* getToDos() {
   try {
@@ -11,6 +13,18 @@ export function* getToDos() {
   }
 }
 
+export function* deleteToDoItem({ payload }) {
+  try {
+    yield call(toDoService.deleteItem, payload);
+    history.push(ROUTES.DASHBOARD);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export default function* toDoSagas() {
-  yield all([takeLatest(TODO_LIST, getToDos)]);
+  yield all([
+    takeLatest(TODO_LIST, getToDos),
+    takeLatest(DELETE_TODO_ITEM, deleteToDoItem),
+  ]);
 }

@@ -8,6 +8,7 @@ import Register from "./screens/register";
 import { ROUTES } from "./constants";
 import { useDispatch } from "react-redux";
 import { getUser } from "./store/user/actions";
+import ToDoItemDetails from "./screens/to-do-item-details";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
         </Route>
         <Route path={ROUTES.DASHBOARD}>
           <UserDashboard />
+        </Route>
+        <Route path={ROUTES.TODO_ITEM}>
+          <ToDoItemDetails />
         </Route>
         <Route path={ROUTES.REGISTER}>
           <Register />

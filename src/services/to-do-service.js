@@ -5,7 +5,9 @@ const ENDPOINTS = {
 };
 
 class ToDoService extends HttpService {
-    getAll = () =>  this.client.get(ENDPOINTS.TO_DOS);
-  }
-  
-  export const toDoService = new ToDoService();
+  getAll = () => this.client.get(ENDPOINTS.TO_DOS);
+
+  deleteItem = (id) => this.client.delete(ENDPOINTS.TO_DOS + `/${id}`);
+}
+
+export const toDoService = new ToDoService();
