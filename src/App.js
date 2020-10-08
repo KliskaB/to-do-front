@@ -13,18 +13,16 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     let accessToken = localStorage.getItem("access-token");
-    dispatch(
-      getUser({
-        accessToken: accessToken,
-      })
-    );
+    if (accessToken) {
+      dispatch(getUser());
+    }
   });
 
   return (
     <HashRouter history={history}>
       <div className="App"></div>
       <Switch>
-        <Route path={ROUTES.LOGIN}>
+        <Route exact path={ROUTES.LOGIN}>
           <Login />
         </Route>
         <Route path={ROUTES.DASHBOARD}>
