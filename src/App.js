@@ -29,7 +29,7 @@ function App() {
         <Route path={ROUTES.DASHBOARD}>
           <UserDashboard />
         </Route>
-        <Route path={ROUTES.TODO_ITEM}>
+        <Route path={ROUTES.TODO_ITEM + `/:todoId`}>
           <ToDoItemDetails />
         </Route>
         <Route path={ROUTES.REGISTER}>

@@ -1,4 +1,4 @@
-import { all, call, takeLatest, put, take } from "redux-saga/effects";
+import { all, call, takeLatest, put } from "redux-saga/effects";
 import { TODO_LIST, setToDos, DELETE_TODO_ITEM } from "./actions";
 import { toDoService } from "../../services/to-do-service";
 import { history } from "../../history";

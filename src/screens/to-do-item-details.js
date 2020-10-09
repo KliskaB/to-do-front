@@ -1,26 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { toDoSelector } from "../store/to-do/selectors";
+import { getToDoByIdSelector } from "../store/to-do/selectors";
 import { Formik, Form } from "formik";
 import SharedInput from "../components/shared-input";
 import { useDispatch } from "react-redux";
 import { deleteToDoItem } from "../store/to-do/actions";
+import { useParams } from "react-router-dom";
+import { userSelector } from "../store/user/selectors";
 
 const ToDoItemDetails = () => {
-  const path = window.location.href;
-  const lastIndexOfBS = path.lastIndexOf("/");
-  const itemId = path.slice(lastIndexOfBS + 1);
-  const todos = useSelector(toDoSelector);
-  let selected = null;
-  const selectItem = () => {
-    todos.map((todo) => {
-      if (todo.id.toString() === itemId) {
-        selected = todo;
-      }
-    });
-  };
-  selectItem();
-
+  let { todoId } = useParams();
+  let selected = useSelector(getToDoByIdSelector(todoId));
+  const user = useSelector(userSelector);
   const dispatch = useDispatch();
   const deleteItem = () => {
     dispatch(deleteToDoItem(selected.id));
@@ -28,7 +19,7 @@ const ToDoItemDetails = () => {
 
   return (
     <div>
-      {selected && (
+      {user ? (
         <div>
           <div> details </div>
           <p>{selected.title}</p>
@@ -65,6 +56,8 @@ const ToDoItemDetails = () => {
             )}
           </Formik>
         </div>
+      ) : (
+        <div>You are not logged in.</div>
       )}
     </div>
   );
