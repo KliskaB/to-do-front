@@ -23,17 +23,17 @@ function App() {
     <HashRouter history={history}>
       <div className="App"></div>
       <Switch>
-        <Route exact path={ROUTES.LOGIN}>
+        <Route path={ROUTES.LOGIN}>
           <Login />
-        </Route>
-        <Route path={ROUTES.DASHBOARD}>
-          <UserDashboard />
         </Route>
         <Route path={ROUTES.TODO_ITEM + `/:todoId`}>
           <ToDoItemDetails />
         </Route>
         <Route path={ROUTES.REGISTER}>
           <Register />
+        </Route>
+        <Route exact path={ROUTES.DASHBOARD}>
+          <UserDashboard />
         </Route>
       </Switch>
     </HashRouter>

@@ -28,7 +28,7 @@ export function* authorizeUser() {
   try {
     const retVal = yield call(userService.getMe);
     yield put(setUser(retVal.data));
-    history.push(ROUTES.DASHBOARD);
+    // history.push(ROUTES.DASHBOARD);
   } catch (e) {
     console.log(e);
     history.push(ROUTES.LOGIN);

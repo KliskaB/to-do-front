@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getToDoByIdSelector } from "../store/to-do/selectors";
 import { Formik, Form } from "formik";
 import SharedInput from "../components/shared-input";
 import { useDispatch } from "react-redux";
-import { deleteToDoItem } from "../store/to-do/actions";
+import { deleteToDoItem, getToDo } from "../store/to-do/actions";
 import { useParams } from "react-router-dom";
 import { userSelector } from "../store/user/selectors";
 
@@ -16,6 +16,10 @@ const ToDoItemDetails = () => {
   const deleteItem = () => {
     dispatch(deleteToDoItem(selected.id));
   };
+
+  useEffect(() => {
+    dispatch(getToDo(todoId));
+  }, []);
 
   return (
     <div>
@@ -30,6 +34,7 @@ const ToDoItemDetails = () => {
               priority: selected.priority,
               complited: selected.complited,
             }}
+            enableReinitialize
             //onSubmit={}
           >
             {({ props }) => (

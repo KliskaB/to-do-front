@@ -8,8 +8,12 @@ export const toDoSelector = createSelector(
 );
 
 export const getToDoByIdSelector = (id) =>
-  createSelector(toDoSelector, (todos) =>
-    todos.find((todo) => {
+  createSelector(toDoSelector, (todos) => {
+    const t = todos.find((todo) => {
       return todo.id.toString() === id;
-    })
-  );
+    });
+    if (t) {
+      return t;
+    }
+    return {};
+  });
