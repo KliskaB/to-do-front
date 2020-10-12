@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getToDoByIdSelector } from "../store/to-do/selectors";
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 import SharedInput from "../components/shared-input";
 import { useDispatch } from "react-redux";
-import { deleteToDoItem, getToDo } from "../store/to-do/actions";
+import { deleteToDoItem, getToDo, editToDoItem } from "../store/to-do/actions";
 import { useParams } from "react-router-dom";
 import { userSelector } from "../store/user/selectors";
 
@@ -16,47 +16,64 @@ const ToDoItemDetails = () => {
   const deleteItem = () => {
     dispatch(deleteToDoItem(selected.id));
   };
+  const handleChange = (e) => {
+    return e.target.value;
+  };
 
   useEffect(() => {
     dispatch(getToDo(todoId));
+    // eslint-disable-next-line
   }, []);
 
   return (
     <div>
       {user ? (
         <div>
-          <div> details </div>
-          <p>{selected.title}</p>
+          <div> Item details </div>
           <Formik
             initialValues={{
-              title: selected.title,
-              description: selected.description,
-              priority: selected.priority,
-              complited: selected.complited,
+              title: selected.title || "",
+              description: selected.description || "",
+              priority: selected.priority || "",
+              complited: selected.complited || false,
             }}
             enableReinitialize
-            //onSubmit={}
+            onSubmit={(values) => {
+              const id = selected.id;
+              const data = { id, ...values };
+              dispatch(editToDoItem(data));
+            }}
+            onChange={handleChange}
           >
-            {({ props }) => (
+            {({ props, onChange }) => (
               <Form>
                 <SharedInput labelName="Title" inputKey="title" {...props} />
                 <SharedInput
                   labelName="Description"
                   inputKey="description"
+                  type="text"
                   {...props}
                 />
-                <SharedInput
-                  labelName="Priority"
-                  inputKey="priority"
-                  {...props}
-                />
+                <div>
+                  <label>Priority</label>
+                </div>
+                <div>
+                  <Field name="priority" as="select" {...onChange} {...props}>
+                    <option value="L" label="Low" />
+                    <option value="M" label="Medium" />
+                    <option value="H" label="High" />
+                  </Field>
+                </div>
                 <SharedInput
                   labelName="Complited"
                   inputKey="complited"
+                  type="checkbox"
                   {...props}
                 />
                 <button type="submit">Edit</button>
-                <button onClick={deleteItem}>Delete</button>
+                <button onClick={deleteItem} type="button">
+                  Delete
+                </button>
               </Form>
             )}
           </Formik>
