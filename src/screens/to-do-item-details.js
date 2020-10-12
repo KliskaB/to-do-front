@@ -16,9 +16,6 @@ const ToDoItemDetails = () => {
   const deleteItem = () => {
     dispatch(deleteToDoItem(selected.id));
   };
-  const handleChange = (e) => {
-    return e.target.value;
-  };
 
   useEffect(() => {
     dispatch(getToDo(todoId));
@@ -43,9 +40,8 @@ const ToDoItemDetails = () => {
               const data = { id, ...values };
               dispatch(editToDoItem(data));
             }}
-            onChange={handleChange}
           >
-            {({ props, onChange }) => (
+            {({ props }) => (
               <Form>
                 <SharedInput labelName="Title" inputKey="title" {...props} />
                 <SharedInput
@@ -58,7 +54,7 @@ const ToDoItemDetails = () => {
                   <label>Priority</label>
                 </div>
                 <div>
-                  <Field name="priority" as="select" {...onChange} {...props}>
+                  <Field name="priority" as="select" {...props}>
                     <option value="L" label="Low" />
                     <option value="M" label="Medium" />
                     <option value="H" label="High" />
