@@ -12,6 +12,8 @@ class ToDoService extends HttpService {
   deleteItem = (id) => this.client.delete(ENDPOINTS.TO_DOS + `/${id}`);
 
   editItem = (data) => this.client.put(ENDPOINTS.TO_DOS + `/${data.id}/`, data);
+
+  createItem = (data) => this.client.post(`${ENDPOINTS.TO_DOS}/`, data);
 }
 
 export const toDoService = new ToDoService();

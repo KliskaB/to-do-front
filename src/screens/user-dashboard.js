@@ -18,6 +18,10 @@ const UserDashboard = () => {
     history.push(ROUTES.LOGIN);
   };
 
+  const createItem = () => {
+    history.push(ROUTES.TODO_ITEM);
+  };
+
   useEffect(() => {
     dispatch(toDoList());
     // eslint-disable-next-line
@@ -30,7 +34,10 @@ const UserDashboard = () => {
         <div>
           <p>{user.username}</p>
           <ToDoList toDoList={todos} />
-          <button onClick={logout}>Log out</button>
+          <button onClick={createItem}>New item</button>
+          <div>
+            <button onClick={logout}>Log out</button>
+          </div>
         </div>
       )}
     </div>

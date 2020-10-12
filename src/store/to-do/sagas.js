@@ -5,6 +5,8 @@ import {
   DELETE_TODO_ITEM,
   GET_TODO,
   EDIT_TODO_ITEM,
+  CREATE_TODO_ITEM,
+  setToDo,
 } from "./actions";
 import { toDoService } from "../../services/to-do-service";
 import { history } from "../../history";
@@ -45,11 +47,22 @@ export function* editToDoItem({ payload }) {
   }
 }
 
+export function* createToDoItem({ payload }) {
+  try {
+    const { data } = yield call(toDoService.createItem, payload);
+    // history.push(ROUTES.DASHBOARD);
+    yield put(setToDo(data));
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export default function* toDoSagas() {
   yield all([
     takeLatest(TODO_LIST, getToDos),
     takeLatest(DELETE_TODO_ITEM, deleteToDoItem),
     takeLatest(GET_TODO, getToDo),
     takeLatest(EDIT_TODO_ITEM, editToDoItem),
+    takeLatest(CREATE_TODO_ITEM, createToDoItem),
   ]);
 }
