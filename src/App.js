@@ -9,6 +9,7 @@ import { ROUTES } from "./constants";
 import { useDispatch } from "react-redux";
 import { getUser } from "./store/user/actions";
 import ToDoItemDetails from "./screens/to-do-item-details";
+import CreateToDoItemForm from "./screens/create-to-do-item";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
         </Route>
         <Route path={ROUTES.TODO_ITEM + `/:todoId`}>
           <ToDoItemDetails />
+        </Route>
+        <Route path={ROUTES.TODO_ITEM}>
+          <CreateToDoItemForm />
         </Route>
         <Route path={ROUTES.REGISTER}>
           <Register />
